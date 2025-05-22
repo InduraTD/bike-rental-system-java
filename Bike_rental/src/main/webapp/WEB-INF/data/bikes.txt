@@ -1,0 +1,6 @@
+B001,Auto,true,Honda Dio,700.0,false
+B002,Manual,false,Yamaha FZS V4,1400.0,true
+B003,Auto,true,Yamaha Ray ZR,900.0,false
+B004,Auto,true,Yadea M6,500.0,true
+B005,Manual,true,KTM 390 Enduro R,2100.0,true
+B006,Manual,false,Royal Enfield Classic 350,1000.0,false

@@ -1,0 +1,2 @@
+U001,John Doe,john@example.com,1234,Rider
+U002,Alice Admin,admin@example.com,admin123,Admin
