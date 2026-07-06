@@ -80,3 +80,14 @@ This application is built with a strong focus on core OOP principles:
    * Start your Tomcat server.
 4. **Access the application**:
    * Open your browser and go to `http://localhost:8080/Bike_rental` (or your mapped context path).
+
+---
+
+## 👥 Contributors
+
+* **Indura** ([@InduraTD](https://github.com/InduraTD))
+* **Amaya** ([@Amaya1001](https://github.com/Amaya1001))
+* **Senuhi** ([@Senuhi2003](https://github.com/Senuhi2003))
+* **Hiran** ([@hiran2004-hub](https://github.com/hiran2004-hub))
+* **Gavesh** ([@gaveshbandara2004](https://github.com/gaveshbandara2004))
+
