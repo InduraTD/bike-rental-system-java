@@ -1,93 +1,72 @@
-# 🚲 Bike Rental & Sharing Platform
+# Bike Rental System
 
-A web-based **Bike Rental and Sharing System** developed in Java. This project was built as a 1st-year university application demonstrating Object-Oriented Programming (OOP) principles, Servlets, and JSP.
+A web application for renting and sharing bikes, built with Java Servlets and JSP. This was a group project from our 1st year at SLIIT, focused on applying OOP concepts in a real-world scenario.
 
----
+## What it does
 
-## 🚀 Key Features
+- Users can register as riders, browse available bikes, and submit rental requests
+- Admins can manage bike inventory, approve/reject requests, and view the rental queue
+- Bikes can be marked as shared, and availability is tracked in real time
+- Data is stored in flat text files (no database needed to run it)
 
-* **User Authentication**: Secure register, login, and logout functionalities for both Riders and Administrators.
-* **Role-Based Dashboards**:
-  * **Riders**: View available bikes, submit rental requests, and view current/past rides.
-  * **Admins**: Manage bike inventory, approve/reject rental requests, and view transaction queues.
-* **Bike Inventory Management**: Real-time tracking of bike availability, location, and condition.
-* **Queue System**: Request queue system to handle rental requests in a first-in, first-out manner.
+## How it's built
 
----
+The project uses a standard Maven WAR structure and runs on Apache Tomcat.
 
-## 🛠️ Tech Stack
+**Models** — `User` is an abstract class. `RiderUser` and `AdminUser` extend it (inheritance). `Bike`, `Ride`, and `RentalRequest` handle the rest of the domain logic. `BikeInventory` includes a custom QuickSort implementation for sorting bikes by availability.
 
-* **Language**: Java 17+
-* **Framework / Specs**: Java Servlets & JavaServer Pages (JSP)
-* **Build System**: Apache Maven
-* **Server**: Apache Tomcat 9+
-* **Data Storage**: Text-file based database (Flat files under `WEB-INF/data/`)
+**Servlets** — Handle authentication, registration, bike management, and rental request processing.
 
----
+**Data layer** — `FileUtil` reads and writes all data to `.txt` files under `WEB-INF/data/`. No external database required.
 
-## 📐 Object-Oriented Programming (OOP) Implementation
+**Frontend** — JSP pages for login, registration, rider dashboard, admin dashboard, and rental request forms.
 
-This application is built with a strong focus on core OOP principles:
-
-1. **Encapsulation**: Models like `User`, `Bike`, and `RentalRequest` encapsulate their properties (private attributes with public getter/setter methods) to protect integrity.
-2. **Inheritance**: Role-specific classes (`RiderUser` and `AdminUser`) extend the base `User` class to share common attributes like username and password.
-3. **Polymorphism**: Method overriding is used to customize behaviors for different user roles (e.g., dashboard access rights).
-4. **Abstraction**: Logic is separated into utility classes (like `FileUtil` for data loading and saving) to shield callers from file parsing details.
-
----
-
-## 📁 Repository Structure
+## Project structure
 
 ```
-├── src/
-│   ├── main/
-│   │   ├── java/com/bikerental/
-│   │   │   ├── model/         # User, Bike, RentalRequest OOP Models
-│   │   │   ├── servlet/       # Request routing & handling
-│   │   │   └── util/          # File parsing & database helpers
-│   │   └── webapp/
-│   │       ├── WEB-INF/
-│   │       │   ├── data/      # Text-file flat databases
-│   │       │   └── web.xml    # Servlet mappings
-│   │       ├── img/           # App asset files
-│   │       └── *.jsp          # User interface templates
-├── pom.xml                    # Maven dependency manager
-└── README.md                  # Project documentation
+src/main/java/com/bikerental/
+├── model/          User, Bike, Ride, RentalRequest, BikeInventory
+├── servlet/        AuthServlet, BikeServlet, RegisterServlet, etc.
+└── util/           FileUtil (file I/O helper)
+
+src/main/webapp/
+├── WEB-INF/
+│   ├── data/       bikes.txt, users.txt, requests.txt, rides.txt
+│   └── web.xml
+├── img/            bike images
+└── *.jsp           login, register, dashboard pages
 ```
 
----
+## Running locally
 
-## ⚙️ How to Setup & Run
+You'll need JDK 17+, Maven, and Tomcat 9+.
 
-### Prerequisites
-* JDK 17 or higher
-* Apache Maven
-* Apache Tomcat 9.x or higher
+```bash
+git clone https://github.com/InduraTD/bike-rental-system-java.git
+cd bike-rental-system-java
+mvn clean package
+```
 
-### Local Run Steps
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/InduraTD/bike-rental-system-java.git
-   cd bike-rental-system-java
-   ```
-2. **Build the project** using Maven:
-   ```bash
-   mvn clean package
-   ```
-   This will generate a `.war` file under the `target/` directory.
-3. **Deploy to Tomcat**:
-   * Copy the generated `.war` file to your Tomcat `webapps/` folder.
-   * Start your Tomcat server.
-4. **Access the application**:
-   * Open your browser and go to `http://localhost:8080/Bike_rental` (or your mapped context path).
+Then deploy the generated `.war` file from `target/` to your Tomcat `webapps/` folder and start the server. The app should be available at `http://localhost:8080/Bike_rental`.
 
----
+## OOP concepts used
 
-## 👥 Contributors
+- **Encapsulation** — private fields with getters/setters in all model classes
+- **Inheritance** — `AdminUser` and `RiderUser` extend the abstract `User` class
+- **Polymorphism** — `getRole()` and `toFileString()` are overridden differently in each subclass
+- **Abstraction** — `FileUtil` hides all file parsing logic from the servlets
 
-* **Indura** ([@InduraTD](https://github.com/InduraTD))
-* **Amaya** ([@Amaya1001](https://github.com/Amaya1001))
-* **Senuhi** ([@Senuhi2003](https://github.com/Senuhi2003))
-* **Hiran** ([@hiran2004-hub](https://github.com/hiran2004-hub))
-* **Gavesh** ([@gaveshbandara2004](https://github.com/gaveshbandara2004))
+## Built with
 
+- Java 17, Servlets, JSP
+- Maven
+- Apache Tomcat 9
+- Flat-file storage (text files)
+
+## Contributors
+
+- [InduraTD](https://github.com/InduraTD)
+- [Amaya1001](https://github.com/Amaya1001)
+- [Senuhi2003](https://github.com/Senuhi2003)
+- [hiran2004-hub](https://github.com/hiran2004-hub)
+- [gaveshbandara2004](https://github.com/gaveshbandara2004)
